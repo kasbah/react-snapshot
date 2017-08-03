@@ -5,6 +5,7 @@ import path from 'path'
 import jsdom from 'jsdom'
 import glob from 'glob-to-regexp'
 import snapshot from './snapshot'
+import jsStringify from 'js-stringify'
 
 export default class Crawler {
   constructor(baseUrl, snapshotDelay, options) {
@@ -36,9 +37,9 @@ export default class Crawler {
     }
     return snapshot(this.protocol, this.host, urlPath, this.snapshotDelay).then(window => {
       if (window.snapshotState != null) {
-        const stateJSON = JSON.stringify(window.snapshotState)
+        const stateString = jsStringify(window.snapshotState)
         const script = window.document.createElement('script')
-        script.innerHTML = `window.snapshotState = JSON.parse('${stateJSON}');`
+        script.innerHTML = `window.snapshotState = ${stateString};`
         window.document.head.appendChild(script)
       }
       const html = jsdom.serializeDocument(window.document)

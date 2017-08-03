@@ -18,6 +18,7 @@
     "express": "^4.15.2",
     "glob-to-regexp": "^0.3.0",
     "http-proxy-middleware": "^0.17.4",
+    "js-stringify": "^1.0.2",
     "jsdom": "^9.4.5",
     "mkdirp": "^0.5.1",
     "react": "^15.3.0",
